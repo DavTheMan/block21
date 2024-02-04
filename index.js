@@ -167,7 +167,6 @@ const addNewRSVP = async (guestId, eventId) => {
 };
 let loneParty;
 const renderAllParties = async (partyList) => {
-    
     try {
         /*if (loneParty){
             const lonePartyObj = await getEvents(loneParty);
@@ -192,30 +191,23 @@ const renderAllParties = async (partyList) => {
             });
             partyContainer.replaceChild(importantParty);
             //playerContainer.style.justifyContent = "flex-start";
-        }
+        }*/
         if (!partyList){
             partyContainer.innerHTML = "<p>No partiest to be had.<p>"
-        }*/
-        //else{
+        }
+        else{
             const partiesCard = partyList.map((party) => {
-                let rsvpNum = 0;
-                states.rsvps.forEach((rsvp) => {
-                    if(rsvp.eventId === party.id){
-                        rsvpNum++;
-                    }
-                });
+                const cardOne = document.createElement("li");
                 const card = document.createElement("div");
                 card.setAttribute("class", "card");
                 card.innerHTML = `<br>
                     <h1>Great Party: ${party.name}</h1>
                     <br>
-                    <p>Description: ${lonePartyObj.party.status}<p>
+                    <p>Description: ${party.description}<p>
                     <br>
-                    <p>Date: ${lonePartyObj.party.status}<p>
+                    <p>Date: ${party.status}<p>
                     <br>
-                    <p>Location: ${lonePartyObj.party.status}<p>
-                    <br>
-                    <p>RSVP: ${rsvpNum}<p>
+                    <p>Location: ${party.status}<p>
                     <br>`;
                 const br = document.createElement("p");
                 br.innerHTML = `<br>`;
@@ -228,9 +220,38 @@ const renderAllParties = async (partyList) => {
                 
                 return card;
             })
+
+                /*let rsvpNum = 0;
+                states.rsvps.forEach((rsvp) => {
+                    if(rsvp.eventId === party.id){
+                        rsvpNum++;
+                    }
+                });
+                const card = document.createElement("div");
+                card.setAttribute("class", "card");
+                card.innerHTML = `<br>
+                    <h1>Great Party: ${party.name}</h1>
+                    <br>
+                    <p>Description: ${party.description}<p>
+                    <br>
+                    <p>Date: ${party.status}<p>
+                    <br>
+                    <p>Location: ${party.status}<p>
+                    <br>`;
+                const br = document.createElement("p");
+                br.innerHTML = `<br>`;
+                card.append(br);
+                const deleteButton = document.createElement("button");
+                deleteButton.setAttribute("class", "deleteButton");
+                deleteButton.innerText = "Delete this party";
+                card.append(deleteButton);
+                deleteButton.addEventListener("click", () => {removeParty(party.id)});
+                
+                return card;
+            })*/
             partyContainer.replaceChildren(...partyCards);
             partyContainer.style.justifyContent = "flex-start";
-        //}
+        }
     } catch (err) {
         console.error('Uh oh, trouble rendering parties!', err);
     }
