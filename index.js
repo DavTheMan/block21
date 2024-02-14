@@ -174,21 +174,3 @@ async function init () {
     renderNewPartyForm();
 }
 init();
-/*const init = async () => {
-    const parties = await getEvents();
-    await getRecipes();
-    await getArtists();
-    //await getEvents();
-    await getGuests();
-    await getRsvps();
-    renderAllParties(parties);
-    addNewParty();
-}
-
-init();
-/*function getArtists(){}
-function getEvents(){}
-function getGuests(){}
-function getRsvps(){}
-function deleteParty(){}
-function parties(){}*/
